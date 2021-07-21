@@ -16,7 +16,7 @@ func Init() *SingleLinkedList {
 }
 
 func (sll *SingleLinkedList) IsEmpty() bool {
-	return (sll.Head == SingleLinkedList{}.Head)
+	return (sll.Size == 0)
 }
 
 func (sll *SingleLinkedList) GetSize() int {
@@ -24,13 +24,17 @@ func (sll *SingleLinkedList) GetSize() int {
 }
 
 func (sll *SingleLinkedList) DisplayData() {
-	temp := sll.Head
-	fmt.Print("Data List: ")
-	for temp != nil {
-		fmt.Printf("%d, ", temp.Data)
-		temp = temp.Next
+	if !sll.IsEmpty() {
+		temp := sll.Head
+		fmt.Print("Data List: ")
+		for temp != nil {
+			fmt.Printf("%d, ", temp.Data)
+			temp = temp.Next
+		}
+		fmt.Println(fmt.Sprintf("Head: %d, Tail: %d, Size: %d ", sll.Head.Data, sll.Tail.Data, sll.Size))
+	} else {
+		fmt.Println("Data is empty")
 	}
-	fmt.Println(fmt.Sprintf("Head: %d, Tail: %d, Size: %d ", sll.Head.Data, sll.Tail.Data, sll.Size))
 }
 
 func (sll *SingleLinkedList) AddFirst(input int) {
