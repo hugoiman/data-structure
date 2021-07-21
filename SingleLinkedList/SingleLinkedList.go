@@ -63,19 +63,19 @@ func (sll *SingleLinkedList) AddLast(input int) {
 	sll.Size++
 }
 
-func (sll *SingleLinkedList) InsertAfter(input, data int) {
+func (sll *SingleLinkedList) InsertAfter(input, dataAfter int) {
 	newNode := new(Node)
 	newNode.Node(input)
 	temp := sll.Head
 
 	for temp != nil {
-		if temp.Data == data {
+		if temp.Data == dataAfter {
 			newNode.Next = temp.Next
 			temp.Next = newNode
 			sll.Size++
 			break
-		} else if temp == sll.Tail && temp.Data != data {
-			fmt.Printf("Data %d not found. ", data)
+		} else if temp == sll.Tail && temp.Data != dataAfter {
+			fmt.Printf("Data %d not found. ", dataAfter)
 		}
 		temp = temp.Next
 	}
