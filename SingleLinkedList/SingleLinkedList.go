@@ -15,117 +15,117 @@ func Init() *SingleLinkedList {
 	return &SingleLinkedList{}
 }
 
-func (ll *SingleLinkedList) IsEmpty() bool {
-	return (ll.Head == SingleLinkedList{}.Head)
+func (sll *SingleLinkedList) IsEmpty() bool {
+	return (sll.Head == SingleLinkedList{}.Head)
 }
 
-func (ll *SingleLinkedList) GetSize() int {
-	return ll.Size
+func (sll *SingleLinkedList) GetSize() int {
+	return sll.Size
 }
 
-func (ll *SingleLinkedList) DisplayData() {
-	temp := ll.Head
+func (sll *SingleLinkedList) DisplayData() {
+	temp := sll.Head
 	fmt.Print("Data List: ")
 	for temp != nil {
 		fmt.Printf("%d, ", temp.Data)
 		temp = temp.Next
 	}
-	fmt.Println(fmt.Sprintf("Head: %d, Tail: %d, Size: %d ", ll.Head.Data, ll.Tail.Data, ll.Size))
+	fmt.Println(fmt.Sprintf("Head: %d, Tail: %d, Size: %d ", sll.Head.Data, sll.Tail.Data, sll.Size))
 }
 
-func (ll *SingleLinkedList) AddFirst(input int) {
+func (sll *SingleLinkedList) AddFirst(input int) {
 	newNode := new(Node)
 	newNode.Node(input)
-	if ll.IsEmpty() {
-		ll.Head = newNode
-		ll.Tail = newNode
+	if sll.IsEmpty() {
+		sll.Head = newNode
+		sll.Tail = newNode
 	} else {
-		newNode.Next = ll.Head
-		ll.Head = newNode
+		newNode.Next = sll.Head
+		sll.Head = newNode
 	}
-	ll.Size++
+	sll.Size++
 }
 
-func (ll *SingleLinkedList) AddLast(input int) {
+func (sll *SingleLinkedList) AddLast(input int) {
 	newNode := new(Node)
 	newNode.Node(input)
-	if ll.IsEmpty() {
-		ll.Head = newNode
-		ll.Tail = newNode
+	if sll.IsEmpty() {
+		sll.Head = newNode
+		sll.Tail = newNode
 	} else {
-		ll.Tail.Next = newNode
-		ll.Tail = newNode
+		sll.Tail.Next = newNode
+		sll.Tail = newNode
 	}
-	ll.Size++
+	sll.Size++
 }
 
-func (ll *SingleLinkedList) InsertAfter(input, data int) {
+func (sll *SingleLinkedList) InsertAfter(input, data int) {
 	newNode := new(Node)
 	newNode.Node(input)
-	temp := ll.Head
+	temp := sll.Head
 
 	for temp != nil {
 		if temp.Data == data {
 			newNode.Next = temp.Next
 			temp.Next = newNode
-			ll.Size++
+			sll.Size++
 			break
-		} else if temp == ll.Tail && temp.Data != data {
+		} else if temp == sll.Tail && temp.Data != data {
 			fmt.Printf("Data %d not found. ", data)
 		}
 		temp = temp.Next
 	}
 }
 
-func (ll *SingleLinkedList) RemoveFirst() {
-	temp := ll.Head
-	if !ll.IsEmpty() {
-		if ll.Head == ll.Tail {
-			ll.Head, ll.Tail = nil, nil
+func (sll *SingleLinkedList) RemoveFirst() {
+	temp := sll.Head
+	if !sll.IsEmpty() {
+		if sll.Head == sll.Tail {
+			sll.Head, sll.Tail = nil, nil
 		} else {
-			ll.Head = temp.Next
+			sll.Head = temp.Next
 		}
-		ll.Size--
+		sll.Size--
 	} else {
 		fmt.Print("Data is empty")
 	}
 }
 
-func (ll *SingleLinkedList) RemoveLast() {
-	temp := ll.Head
-	if !ll.IsEmpty() {
-		if ll.Tail == ll.Head {
-			ll.Head, ll.Tail = nil, nil
+func (sll *SingleLinkedList) RemoveLast() {
+	temp := sll.Head
+	if !sll.IsEmpty() {
+		if sll.Tail == sll.Head {
+			sll.Head, sll.Tail = nil, nil
 		} else {
-			for temp.Next != ll.Tail {
+			for temp.Next != sll.Tail {
 				temp = temp.Next
 			}
 			temp.Next = nil
-			ll.Tail = temp
+			sll.Tail = temp
 		}
-		ll.Size--
+		sll.Size--
 	} else {
 		fmt.Print("Data is empty")
 	}
 }
 
-func (ll *SingleLinkedList) RemoveCertain(data int) {
-	temp := ll.Head
-	if !ll.IsEmpty() {
+func (sll *SingleLinkedList) RemoveCertain(data int) {
+	temp := sll.Head
+	if !sll.IsEmpty() {
 		for temp != nil {
-			if temp == ll.Tail && temp.Data != data {
+			if temp == sll.Tail && temp.Data != data {
 				fmt.Printf("Data %d not found. ", data)
 				break
 			} else if temp.Next.Data == data {
 				temp.Next = temp.Next.Next
 				if temp.Next == nil {
-					ll.Tail = temp
+					sll.Tail = temp
 				}
-				ll.Size--
+				sll.Size--
 				break
-			} else if temp.Data == data && temp == ll.Head {
-				ll.RemoveFirst()
-				ll.Size--
+			} else if temp.Data == data && temp == sll.Head {
+				sll.RemoveFirst()
+				sll.Size--
 				break
 			}
 			temp = temp.Next
@@ -135,16 +135,16 @@ func (ll *SingleLinkedList) RemoveCertain(data int) {
 	}
 }
 
-func (ll *SingleLinkedList) CheckIndex(index int) {
-	if index < 0 || index > ll.Size {
+func (sll *SingleLinkedList) CheckIndex(index int) {
+	if index < 0 || index > sll.Size {
 		fmt.Printf("index %d out of bounds exception ", index)
 		os.Exit(0)
 	}
 }
 
-func (ll *SingleLinkedList) GetIndex(index int) int {
-	ll.CheckIndex(index)
-	temp := ll.Head
+func (sll *SingleLinkedList) GetIndex(index int) int {
+	sll.CheckIndex(index)
+	temp := sll.Head
 	for i := 0; i < index; i++ {
 		temp = temp.Next
 	}
