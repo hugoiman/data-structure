@@ -1,13 +1,12 @@
-package main
+package SingleLinkedList
 
 import (
-	sll "data-structure/SingleLinkedList"
 	"fmt"
 	"testing"
 )
 
 func TestSingleLinkedList(t *testing.T) {
-	list := sll.Init()
+	list := Init()
 	fmt.Printf("Add Front: %d, --> ", 4)
 	list.AddFirst(4)
 	list.DisplayData() // 4
