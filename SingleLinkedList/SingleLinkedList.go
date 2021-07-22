@@ -1,8 +1,9 @@
 package SingleLinkedList
 
 import (
+	"errors"
 	"fmt"
-	"os"
+	"strconv"
 )
 
 type SingleLinkedList struct {
@@ -139,18 +140,21 @@ func (sll *SingleLinkedList) RemoveCertain(data int) {
 	}
 }
 
-func (sll *SingleLinkedList) CheckIndex(index int) {
+func (sll *SingleLinkedList) CheckIndex(index int) error {
 	if index < 0 || index > sll.Size {
-		fmt.Printf("index %d out of bounds exception ", index)
-		os.Exit(0)
+		return errors.New("index out of bounds exception")
 	}
+	return nil
 }
 
-func (sll *SingleLinkedList) GetIndex(index int) int {
-	sll.CheckIndex(index)
+func (sll *SingleLinkedList) GetIndex(index int) (string, error) {
+	err := sll.CheckIndex(index)
+	if err != nil {
+		return "", err
+	}
 	temp := sll.Head
 	for i := 0; i < index; i++ {
 		temp = temp.Next
 	}
-	return temp.Data
+	return strconv.Itoa(temp.Data), nil
 }
