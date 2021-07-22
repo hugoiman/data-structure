@@ -1,8 +1,9 @@
 package DoubleLinkedList
 
 import (
+	"errors"
 	"fmt"
-	"os"
+	"strconv"
 )
 
 type DoubleLinkedList struct {
@@ -179,18 +180,21 @@ func (dll *DoubleLinkedList) RemoveCertain(data int) {
 	}
 }
 
-func (dll *DoubleLinkedList) CheckIndex(index int) {
+func (dll *DoubleLinkedList) CheckIndex(index int) error {
 	if index < 0 || index > dll.Size {
-		fmt.Printf("index %d out of bounds exception ", index)
-		os.Exit(0)
+		return errors.New("index out of bounds exception")
 	}
+	return nil
 }
 
-func (dll *DoubleLinkedList) GetIndex(index int) int {
-	dll.CheckIndex(index)
+func (dll *DoubleLinkedList) GetIndex(index int) (string, error) {
+	err := dll.CheckIndex(index)
+	if err != nil {
+		return "", err
+	}
 	temp := dll.Head
 	for i := 0; i < index; i++ {
 		temp = temp.Next
 	}
-	return temp.Data
+	return strconv.Itoa(temp.Data), nil
 }
