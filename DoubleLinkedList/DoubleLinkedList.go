@@ -3,7 +3,6 @@ package DoubleLinkedList
 import (
 	"errors"
 	"fmt"
-	"strconv"
 )
 
 type DoubleLinkedList struct {
@@ -187,14 +186,14 @@ func (dll *DoubleLinkedList) CheckIndex(index int) error {
 	return nil
 }
 
-func (dll *DoubleLinkedList) GetIndex(index int) (string, error) {
+func (dll *DoubleLinkedList) GetIndex(index int) interface{} {
 	err := dll.CheckIndex(index)
 	if err != nil {
-		return "", err
+		return err
 	}
 	temp := dll.Head
 	for i := 0; i < index; i++ {
 		temp = temp.Next
 	}
-	return strconv.Itoa(temp.Data), nil
+	return temp.Data
 }

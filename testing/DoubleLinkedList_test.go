@@ -54,8 +54,10 @@ func TestDoubleLinkedList(t *testing.T) {
 	list.DisplayData()     // 2, 5, 9
 
 	fmt.Printf("Get data at index %d: ", 1)
-	data, err := list.GetIndex(1)
-	fmt.Println(data, err) // 5
+	fmt.Println(list.GetIndex(1)) // 5
+
+	fmt.Printf("Get data at index %d: ", 19)
+	fmt.Println(list.GetIndex(19)) // index 19 out of bounds exception
 
 	fmt.Printf("Add %d Before %d, --> ", 7, 9)
 	list.InsertBefore(7, 9)
