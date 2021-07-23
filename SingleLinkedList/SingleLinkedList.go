@@ -3,7 +3,6 @@ package SingleLinkedList
 import (
 	"errors"
 	"fmt"
-	"strconv"
 )
 
 type SingleLinkedList struct {
@@ -147,14 +146,14 @@ func (sll *SingleLinkedList) CheckIndex(index int) error {
 	return nil
 }
 
-func (sll *SingleLinkedList) GetIndex(index int) (string, error) {
+func (sll *SingleLinkedList) GetIndex(index int) interface{} {
 	err := sll.CheckIndex(index)
 	if err != nil {
-		return "", err
+		return err
 	}
 	temp := sll.Head
 	for i := 0; i < index; i++ {
 		temp = temp.Next
 	}
-	return strconv.Itoa(temp.Data), nil
+	return temp.Data
 }

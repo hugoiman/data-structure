@@ -53,10 +53,8 @@ func TestSingleLinkedList(t *testing.T) {
 	list.DisplayData()     // 2, 5, 9
 
 	fmt.Printf("Get data at index %d: ", 1)
-	data, err := list.GetIndex(1)
-	fmt.Println(data, err) // 5
+	fmt.Println(list.GetIndex(1)) // 5
 
 	fmt.Printf("Get data at index %d: ", 4)
-	data, err = list.GetIndex(4)
-	fmt.Println(data, err) // index 4 out of bounds exception
+	fmt.Println(list.GetIndex(4)) // index 4 out of bounds exception
 }
