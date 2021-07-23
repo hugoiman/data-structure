@@ -1,12 +1,13 @@
-package DoubleLinkedList
+package testing
 
 import (
+	dll "data-structure/DoubleLinkedList"
 	"fmt"
 	"testing"
 )
 
 func TestDoubleLinkedList(t *testing.T) {
-	list := Init()
+	list := dll.Init()
 
 	fmt.Printf("Add Front: %d, --> ", 4)
 	list.AddFirst(4)
