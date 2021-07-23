@@ -18,6 +18,10 @@ func (sll *StackLinkedList) IsEmpty() bool {
 	return (sll.Top == nil)
 }
 
+func (sll *StackLinkedList) GetSize() int {
+	return sll.Size
+}
+
 func (sll *StackLinkedList) DisplayData() {
 	if !sll.IsEmpty() {
 		temp := sll.Top
@@ -42,6 +46,7 @@ func (sll *StackLinkedList) Push(input int) {
 		newNode.Next = sll.Top
 		sll.Top = newNode
 	}
+	sll.Size++
 }
 
 func (sll *StackLinkedList) Pop() interface{} {
@@ -59,5 +64,4 @@ func (sll *StackLinkedList) Peek() interface{} {
 		return errors.New("Data is empty")
 	}
 	return sll.Top.Data
-
 }
